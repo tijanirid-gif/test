@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Horizon | Articles et conseils digitaux</title>
+  <meta name="description" content="Digital Horizon est un site informatif dédié au freelancing, aux compétences digitales, aux sites web, à la discipline et aux revenus en ligne." />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --primary: #0f172a;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--primary);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: #60a5fa;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      opacity: 0.92;
+      font-size: 15px;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #93c5fd;
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .page {
+      display: none;
+      min-height: calc(100vh - 140px);
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .hero {
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)),
+        url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop") center/cover;
+      color: white;
+      padding: 95px 0 85px;
+    }
+
+    .hero-content {
+      max-width: 860px;
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.28);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .section {
+      padding: 64px 0;
+    }
+
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .section-text {
+      color: var(--muted);
+      max-width: 860px;
+      margin-bottom: 30px;
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15.5px;
+    }
+
+    .stats {
+      margin-top: 24px;
+    }
+
+    .stat {
+      text-align: center;
+      background: var(--primary);
+      color: white;
+      border-radius: var(--radius);
+      padding: 26px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      color: #93c5fd;
+      margin-bottom: 8px;
+    }
+
+    .article-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .article-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .tag {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .article-card h3 {
+      font-size: 30px;
+      margin-bottom: 14px;
+      color: var(--primary);
+      line-height: 1.25;
+    }
+
+    .article-card p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .read-more {
+      margin-top: 8px;
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .ad-box {
+      background: #eef2ff;
+      border: 2px dashed #94a3b8;
+      color: #475569;
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      font-weight: 700;
+      margin: 6px 0;
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+      padding: 56px 0;
+    }
+
+    .page-hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .page-hero p {
+      color: rgba(255,255,255,0.9);
+      max-width: 760px;
+    }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .article-main,
+    .sidebar-box,
+    .form-box,
+    .info-box,
+    .content-box {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .article-main {
+      padding: 34px;
+    }
+
+    .article-header {
+      margin-bottom: 22px;
+    }
+
+    .article-header h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .article-main h2 {
+      font-size: 28px;
+      margin: 28px 0 12px;
+      color: var(--primary);
+    }
+
+    .article-main p {
+      color: #334155;
+      margin-bottom: 16px;
+      font-size: 17px;
+    }
+
+    .article-main ul {
+      padding-left: 22px;
+      margin-bottom: 18px;
+    }
+
+    .article-main li {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    .sidebar-box {
+      padding: 24px;
+      margin-bottom: 22px;
+    }
+
+    .sidebar-box h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .sidebar-box p,
+    .sidebar-box li {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .sidebar-box ul {
+      padding-left: 18px;
+    }
+
+    .simple-list a {
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .simple-list a:last-child {
+      border-bottom: none;
+    }
+
+    .content-box,
+    .form-box,
+    .info-box {
+      padding: 30px;
+    }
+
+    .content-box h2,
+    .form-box h2,
+    .info-box h2 {
+      font-size: 28px;
+      margin-bottom: 14px;
+      color: var(--primary);
+    }
+
+    .content-box p,
+    .form-box p,
+    .info-box p {
+      margin-bottom: 16px;
+      color: #334155;
+      font-size: 17px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+    }
+
+    button {
+      padding: 14px 22px;
+      border: none;
+      border-radius: 12px;
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+      width: fit-content;
+    }
+
+    button:hover {
+      background: var(--accent-hover);
+    }
+
+    .footer {
+      background: var(--primary);
+      color: white;
+      margin-top: 40px;
+    }
+
+    .footer-inner {
+      padding: 34px 0;
+      text-align: center;
+    }
+
+    .footer-inner h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .footer-inner p {
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 980px) {
+      .grid-3,
+      .grid-2,
+      .article-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        padding: 10px 0 4px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .page-hero h1,
+      .article-header h1 {
+        font-size: 34px;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+
+      .article-card h3 {
+        font-size: 26px;
+      }
+
+      .article-main {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="logo">Digital <span>Horizon</span></div>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <nav class="nav-links" id="navLinks">
+        <a data-page="home" class="active">Accueil</a>
+        <a data-page="about">À propos</a>
+        <a data-page="contact">Contact</a>
+        <a data-page="privacy">Confidentialité</a>
+        <a data-page="terms">Conditions</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <section class="hero">
+        <div class="container hero-content">
+          <h1>Apprendre à avancer sur internet avec des bases solides et des idées réalistes</h1>
+          <p>
+            Digital Horizon est un site conçu pour les débutants qui veulent comprendre le freelancing,
+            améliorer leurs compétences numériques, créer un site utile et construire progressivement
+            une présence sérieuse sur internet.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" data-page="home-articles">Lire les articles</a>
+            <a class="btn btn-secondary" data-page="about">Découvrir le projet</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Pourquoi ce site existe</h2>
+          <p class="section-text">
+            Beaucoup de personnes veulent commencer quelque chose sur internet mais ne savent pas par où débuter.
+            Entre les promesses irréalistes, les informations contradictoires et le manque de méthode, il devient facile de se perdre.
+            Ce site a été imaginé pour proposer un contenu plus calme, plus utile et plus structuré, afin d'aider les visiteurs
+            à progresser étape par étape.
+          </p>
+
+          <div class="grid grid-3">
+            <div class="card">
+              <h3>Des explications claires</h3>
+              <p>
+                Les articles sont écrits dans un style simple, avec des phrases compréhensibles et une logique progressive
+                pour aider les lecteurs à assimiler les idées sans confusion.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Des conseils réalistes</h3>
+              <p>
+                Nous ne parlons pas de méthodes magiques. Le contenu met l'accent sur la patience, le travail régulier
+                et la construction lente d'une vraie compétence ou d'un vrai projet.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Une base utile pour débuter</h3>
+              <p>
+                Le but est de proposer aux débutants une première base de lecture sur les sujets les plus fréquents
+                dans le monde du digital et du travail en ligne.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-3 stats">
+            <div class="stat"><strong>5</strong>Articles détaillés</div>
+            <div class="stat"><strong>100%</strong>Contenu informatif</div>
+            <div class="stat"><strong>Débutant</strong>Niveau accessible</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="home-articles">
+        <div class="container">
+          <h2 class="section-title">Les articles à lire</h2>
+          <p class="section-text">
+            Voici une première sélection de contenus pour mieux comprendre les bases du freelancing,
+            des compétences digitales, des sites web, de la discipline et des revenus en ligne.
+          </p>
+
+          <div class="article-list">
+            <div class="article-card">
+              <span class="tag">Article 1 • Freelancing</span>
+              <h3>Comment commencer le freelancing sans expérience ni portefeuille impressionnant</h3>
+              <p>
+                Beaucoup de débutants pensent qu'il faut attendre le moment parfait avant de proposer un service.
+                Cet article explique pourquoi il vaut mieux commencer petit, construire un premier portfolio,
+                clarifier son offre et chercher des preuves de confiance plutôt que des résultats immédiats.
+              </p>
+              <a class="read-more" data-page="article1">Lire l'article complet</a>
+            </div>
+
+            <div class="article-card">
+              <span class="tag">Article 2 • Compétences digitales</span>
+              <h3>Les compétences numériques les plus utiles pour construire une vraie progression</h3>
+              <p>
+                Toutes les compétences ne se valent pas pour un débutant. Cet article présente des pistes plus accessibles,
+                plus utiles et plus réalistes pour commencer à apprendre et à publier des résultats visibles.
+              </p>
+              <a class="read-more" data-page="article2">Lire l'article complet</a>
+            </div>
+
+            <div class="ad-box">
+              Zone réservée à Google AdSense après approbation du site
+            </div>
+
+            <div class="article-card">
+              <span class="tag">Article 3 • Site web</span>
+              <h3>Pourquoi un site simple peut devenir une vraie base pour un projet durable</h3>
+              <p>
+                Un site web n'a pas besoin d'être compliqué pour être utile. Ce contenu explique comment une structure claire,
+                des pages importantes et du texte de qualité peuvent créer une base crédible.
+              </p>
+              <a class="read-more" data-page="article3">Lire l'article complet</a>
+            </div>
+
+            <div class="article-card">
+              <span class="tag">Article 4 • Discipline</span>
+              <h3>La discipline quotidienne compte souvent plus que la motivation passagère</h3>
+              <p>
+                Commencer est facile, continuer l'est beaucoup moins. Cet article parle du rôle de la discipline,
+                de la répétition et des petits objectifs pour garder un projet vivant.
+              </p>
+              <a class="read-more" data-page="article4">Lire l'article complet</a>
+            </div>
+
+            <div class="article-card">
+              <span class="tag">Article 5 • Revenus en ligne</span>
+              <h3>Construire un revenu sur internet demande surtout du temps et une stratégie claire</h3>
+              <p>
+                Les revenus en ligne existent, mais ils ne naissent pas du hasard. Cet article explique pourquoi la patience,
+                la méthode et la cohérence sont plus importantes que la recherche de gains rapides.
+              </p>
+              <a class="read-more" data-page="article5">Lire l'article complet</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="article1" class="page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Comment commencer le freelancing sans expérience ni clients</h1>
+          <p>Un article complet pour les débutants qui veulent construire leurs premières bases sérieuses.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container article-layout">
+          <article class="article-main">
+            <div class="article-header">
+              <span class="tag">Freelancing</span>
+              <h1>Comment commencer le freelancing sans expérience ni portefeuille impressionnant</h1>
+              <div class="meta">Publié en 2026 • Lecture longue • Niveau débutant</div>
+            </div>
+
+            <p>
+              Le freelancing attire beaucoup de personnes parce qu'il donne l'image d'une liberté nouvelle.
+              Travailler depuis chez soi, choisir ses horaires, parler directement avec des clients et transformer
+              une compétence en revenu sont des idées très séduisantes. Pourtant, au moment de commencer,
+              beaucoup de débutants ressentent un blocage très fort. Ils se disent qu'ils ne sont pas assez bons,
+              qu'ils n'ont pas encore assez d'expérience, qu'ils ne possèdent pas les bons exemples à montrer,
+              ou qu'ils doivent encore attendre avant de proposer quoi que ce soit.
+            </p>
+
+            <p>
+              Ce raisonnement semble logique, mais il retarde souvent le départ sans réellement améliorer la situation.
+              En vérité, la majorité des freelances ont commencé avec un profil simple, des compétences encore imparfaites
+              et aucune grande preuve de crédibilité. Ce qui a fait la différence, ce n'est pas un niveau parfait dès le début,
+              mais la décision de construire progressivement une image plus claire, plus sérieuse et plus utile.
+            </p>
+
+            <h2>Choisir un seul service au lieu de vouloir tout faire</h2>
+
+            <p>
+              L'une des erreurs les plus fréquentes chez les débutants consiste à vouloir proposer trop de choses à la fois.
+              On voit souvent des profils qui disent pouvoir faire du design, du montage, de la traduction,
+              du développement, de la rédaction, de la gestion de réseaux sociaux et même du marketing.
+              Le problème, ce n'est pas l'ambition. Le problème, c'est que cette accumulation brouille le message.
+              Un client qui arrive sur un profil flou ne comprend pas immédiatement à quoi la personne est vraiment utile.
+            </p>
+
+            <p>
+              Il est donc beaucoup plus intelligent de choisir un seul type de service au départ.
+              Ce service doit être assez simple pour être pratiqué souvent, assez utile pour intéresser un client,
+              et assez clair pour être expliqué en une phrase. Par exemple, vous pouvez proposer la rédaction de textes simples,
+              la création d'affiches basiques, le montage de petites vidéos pour les réseaux sociaux,
+              la mise en page de CV, la traduction de contenus courts ou l'organisation de publications Instagram.
+            </p>
+
+            <p>
+              Lorsqu'un service est simple à comprendre, il devient plus facile à présenter, à améliorer
+              et à vendre. La clarté rassure les clients. Elle vous aide aussi à concentrer vos efforts
+              dans une seule direction au lieu de disperser votre énergie dans dix apprentissages en même temps.
+            </p>
+
+            <h2>Créer un portfolio même sans vrai client</h2>
+
+            <p>
+              Beaucoup de débutants pensent qu'un portfolio doit forcément contenir des travaux réalisés pour des entreprises réelles.
+              C'est faux. Un portfolio sert d'abord à montrer votre manière de travailler, votre sens de la présentation,
+              votre rigueur et votre compréhension d'un besoin. Si vous n'avez pas encore de clients,
+              vous pouvez créer des exemples fictifs mais crédibles.
+            </p>
+
+            <p>
+              Quelqu'un qui veut proposer du design peut imaginer l'identité visuelle d'une petite boutique.
+              Quelqu'un qui veut écrire peut rédiger une page de présentation pour une marque fictive.
+              Quelqu'un qui veut monter des vidéos peut créer une courte vidéo promotionnelle à partir d'images libres.
+              L'important est que le travail soit propre, lisible et présenté avec sérieux.
+            </p>
+
+            <p>
+              Ce genre de portfolio n'est pas un mensonge s'il est clairement utilisé comme démonstration.
+              Il montre simplement votre niveau actuel. Avec le temps, ces exemples seront remplacés
+              par de vrais projets ou complétés par des missions réelles. Mais au début, ils remplissent déjà une fonction essentielle :
+              ils empêchent votre profil d'être vide.
+            </p>
+
+            <h2>Apprendre à se présenter simplement</h2>
+
+            <p>
+              La façon dont vous vous présentez compte énormément. Beaucoup de débutants écrivent des descriptions trop longues,
+              trop vagues ou pleines de mots compliqués. Pourtant, ce que cherche un client est souvent très simple :
+              comprendre ce que vous proposez, pour qui c'est utile et pourquoi il devrait vous faire confiance.
+            </p>
+
+            <p>
+              Une bonne présentation peut suivre une structure courte. D'abord, dire quel service vous proposez.
+              Ensuite, expliquer quel problème vous aidez à résoudre. Enfin, montrer votre volonté d'être sérieux, réactif
+              et attentif aux détails. Vous n'avez pas besoin de prétendre être expert international si vous débutez.
+              Vous avez surtout besoin d'être clair et crédible.
+            </p>
+
+            <p>
+              Cette honnêteté peut devenir une force. Un profil modeste mais bien présenté inspire plus confiance
+              qu'un profil qui exagère tout sans pouvoir le prouver. Les clients sentent rapidement la différence
+              entre une personne qui veut impressionner et une personne qui veut vraiment bien travailler.
+            </p>
+
+            <h2>Accepter de commencer petit</h2>
+
+            <p>
+              Les premières missions sont rarement extraordinaires. Elles sont parfois simples, peu payées
+              et moins intéressantes que ce qu'on imaginait. Pourtant, elles jouent un rôle essentiel.
+              Elles vous permettent d'apprendre à communiquer avec un client, à respecter un délai,
+              à clarifier une demande et à gérer un travail concret jusqu'à la livraison.
+            </p>
+
+            <p>
+              Beaucoup de personnes ratent ce passage parce qu'elles cherchent un grand résultat dès le début.
+              Elles refusent les petites opportunités, veulent paraître déjà très avancées, puis restent sans expérience réelle.
+              Il vaut mieux accepter un début modeste que poursuivre une image idéale sans aucune preuve.
+            </p>
+
+            <p>
+              Une petite mission bien faite peut devenir votre première recommandation, votre premier avis positif
+              ou votre première base de confiance. C'est souvent comme cela que la progression commence.
+            </p>
+
+            <h2>Construire la confiance avant de chercher le revenu rapide</h2>
+
+            <p>
+              Au tout début, le vrai objectif n'est pas d'atteindre immédiatement un revenu élevé.
+              Le vrai objectif est de bâtir de la confiance. Cette confiance peut prendre plusieurs formes :
+              un profil clair, des exemples propres, une première mission terminée, un message bien rédigé,
+              une bonne réputation, une attitude professionnelle.
+            </p>
+
+            <p>
+              Quand cette confiance commence à exister, le reste devient plus facile. Les clients hésitent moins,
+              les conversations deviennent plus fluides, les réponses sont plus positives et les occasions augmentent.
+              Sans confiance, même une bonne compétence a du mal à être choisie. Avec confiance, même un niveau moyen
+              peut déjà ouvrir des portes.
+            </p>
+
+            <h2>Conclusion</h2>
+
+            <p>
+              Commencer le freelancing sans expérience n'est pas un problème rare. C'est la situation normale de presque tout le monde.
+              Ce qui compte n'est pas d'attendre d'être prêt dans l'absolu, mais de devenir progressivement plus présentable,
+              plus clair et plus utile. Choisir un service simple, créer quelques exemples, bien se présenter
+              et accepter de débuter petit sont souvent les vraies premières étapes.
+            </p>
+
+            <p>
+              Le freelancing ne se construit pas en une nuit. Il se construit avec des preuves, des essais,
+              des ajustements et beaucoup de patience. Mais pour ceux qui acceptent ce rythme, il peut devenir
+              une vraie école de travail, de discipline et d'autonomie.
+            </p>
+          </article>
+
+          <aside>
+            <div class="sidebar-box">
+              <h3>Autres articles</h3>
+              <div class="simple-list">
+                <a data-page="article2">Les compétences numériques utiles</a>
+                <a data-page="article3">Pourquoi créer un site simple</a>
+                <a data-page="article4">La discipline dans le digital</a>
+                <a data-page="article5">Construire un revenu en ligne</a>
+              </div>
+            </div>
+
+            <div class="sidebar-box">
+              <h3>Résumé rapide</h3>
+              <ul>
+                <li>Choisir un seul service clair</li>
+                <li>Créer un portfolio même fictif</li>
+                <li>Bien se présenter sans exagération</li>
+                <li>Commencer par de petites missions</li>
+                <li>Bâtir la confiance avant le gain rapide</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </section>
+
+    <section id="article2" class="page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Les compétences numériques les plus utiles pour construire une vraie progression</h1>
+          <p>Une lecture longue pour comprendre quelles compétences valent vraiment la peine d'être développées.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container article-layout">
+          <article class="article-main">
+            <div class="article-header">
+              <span class="tag">Compétences digitales</span>
+              <h1>Les compétences numériques les plus utiles pour construire une progression sérieuse</h1>
+              <div class="meta">Publié en 2026 • Lecture longue • Niveau débutant</div>
+            </div>
+
+            <p>
+              Quand une personne veut commencer à travailler sur internet, elle découvre rapidement une quantité immense de possibilités.
+              Design, montage vidéo, rédaction, marketing, développement, réseaux sociaux, création de contenu,
+              commerce en ligne et bien d'autres domaines semblent tous prometteurs. Ce grand choix donne l'impression
+              qu'il existe forcément une route parfaite. En réalité, le problème n'est pas de trouver la compétence idéale,
+              mais de choisir une compétence qu'on pourra vraiment pratiquer avec régularité.
+            </p>
+
+            <p>
+              Beaucoup de débutants perdent du temps à sauter d'une idée à l'autre. Ils commencent quelque chose pendant trois jours,
+              voient ensuite une autre tendance, changent de direction, puis recommencent ailleurs. Cette agitation donne parfois
+              l'impression de progresser, alors qu'elle empêche souvent l'accumulation d'un vrai niveau. Une compétence utile n'est pas
+              seulement une compétence populaire. C'est une compétence qu'on peut améliorer, montrer et transformer progressivement
+              en valeur réelle.
+            </p>
+
+            <h2>La rédaction comme compétence de base</h2>
+            <p>
+              Écrire reste une compétence très sous-estimée. Pourtant, presque tout sur internet repose sur des textes :
+              descriptions de produits, présentations de services, emails, scripts vidéo, pages d'accueil, publications,
+              articles de blog ou messages professionnels. Une personne capable d'écrire clairement possède déjà un outil puissant.
+            </p>
+
+            <p>
+              La rédaction a aussi l'avantage d'être accessible. Elle ne demande pas un ordinateur très puissant
+              ni des logiciels complexes. Elle exige surtout de l'observation, de la structure et de la clarté.
+              Pour un débutant, elle peut devenir une excellente école de communication, de discipline et de présentation.
+            </p>
+
+            <h2>Le design simple et la présentation visuelle</h2>
+            <p>
+              Il n'est pas nécessaire d'être un grand directeur artistique pour créer des visuels utiles.
+              Beaucoup de petites entreprises, créateurs ou freelances ont besoin de présentations simples mais propres :
+              affiches, miniatures, publications de réseaux sociaux, menus, CV visuels, cartes ou petites brochures.
+            </p>
+
+            <p>
+              Le design simple a un avantage important : il est facile à montrer dans un portfolio.
+              Quelques exemples bien présentés peuvent rapidement donner une impression sérieuse.
+              Cette compétence apprend aussi le sens de l'organisation visuelle, ce qui est utile même dans d'autres domaines.
+            </p>
+
+            <h2>Le montage vidéo court</h2>
+            <p>
+              Avec la montée des formats courts, savoir monter une vidéo simple est devenu très utile.
+              Beaucoup de contenus publiés sur les réseaux sociaux ont besoin d'un découpage clair,
+              de sous-titres, de transitions propres et d'un rythme agréable. Même un niveau basique
+              peut déjà rendre service à une petite marque ou à un créateur.
+            </p>
+
+            <p>
+              Cette compétence peut être intéressante pour les débutants parce qu'elle relie créativité,
+              technique et compréhension de l'attention du public. En plus, le résultat est très visible.
+              Une vidéo bien montée parle d'elle-même.
+            </p>
+
+            <h2>La gestion de réseaux sociaux</h2>
+            <p>
+              Beaucoup de petites structures savent qu'elles doivent exister sur les réseaux, mais n'ont ni le temps
+              ni l'organisation pour le faire correctement. Gérer un compte ne signifie pas seulement publier des images.
+              Cela implique de planifier, rédiger, structurer, observer les réactions et garder une cohérence visuelle.
+            </p>
+
+            <p>
+              Pour un débutant, cette compétence est utile parce qu'elle combine plusieurs petites capacités :
+              écrire, organiser, comprendre une audience, choisir un ton, préparer des visuels et respecter une fréquence.
+              Elle peut aussi servir pour développer ses propres projets.
+            </p>
+
+            <h2>La création de sites simples</h2>
+            <p>
+              Savoir construire un site vitrine simple peut devenir très précieux. Beaucoup de projets ont besoin
+              d'une présence minimale sur internet : une page d'accueil, une présentation, quelques services,
+              un contact, une page de confidentialité. Ce type de besoin est fréquent et concret.
+            </p>
+
+            <p>
+              Même si vous ne devenez pas développeur, comprendre les bases d'un site vous aide à mieux présenter vos idées.
+              Cela vous apprend aussi à penser en structure, à hiérarchiser l'information et à créer une expérience plus claire
+              pour les visiteurs.
+            </p>
+
+            <h2>Conclusion</h2>
+            <p>
+              Les compétences numériques utiles ne sont pas forcément les plus impressionnantes à raconter.
+              Ce sont souvent celles qui répondent à un besoin fréquent et que l'on peut améliorer avec discipline.
+              La rédaction, le design simple, le montage vidéo court, la gestion de réseaux sociaux
+              et les sites web basiques sont de bonnes pistes pour beaucoup de débutants.
+            </p>
+
+            <p>
+              Le plus important reste la constance. Une compétence travaillée sérieusement pendant plusieurs mois
+              peut ouvrir plus d'opportunités qu'une suite de tentatives abandonnées trop vite.
+              Sur internet, les résultats viennent souvent moins de la magie que de la répétition.
+            </p>
+          </article>
+
+          <aside>
+            <div class="sidebar-box">
+              <h3>Autres articles</h3>
+              <div class="simple-list">
+                <a data-page="article1">Commencer le freelancing</a>
+                <a data-page="article3">Créer un site utile</a>
+                <a data-page="article4">Le rôle de la discipline</a>
+                <a data-page="article5">Construire un revenu en ligne</a>
+              </div>
+            </div>
+
+            <div class="sidebar-box">
+              <h3>Compétences citées</h3>
+              <ul>
+                <li>Rédaction</li>
+                <li>Design simple</li>
+                <li>Montage vidéo court</li>
+                <li>Gestion sociale media</li>
+                <li>Création de sites simples</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </section>
+
+    <section id="article3" class="page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Pourquoi un site simple peut devenir une vraie base pour un projet durable</h1>
+          <p>Un article long pour comprendre l'utilité d'un site clair, propre et bien structuré.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container article-layout">
+          <article class="article-main">
+            <div class="article-header">
+              <span class="tag">Site web</span>
+              <h1>Pourquoi un site simple peut devenir une vraie base pour un projet durable</h1>
+              <div class="meta">Publié en 2026 • Lecture longue • Niveau débutant</div>
+            </div>
+
+            <p>
+              Dans l'imaginaire de beaucoup de débutants, un bon site internet doit forcément être très sophistiqué.
+              Il devrait avoir des animations complexes, des dizaines de sections, des intégrations multiples,
+              un grand design et un niveau technique impressionnant. Cette idée peut décourager les personnes
+              qui veulent simplement commencer quelque chose de sérieux. Pourtant, dans la réalité,
+              un site web simple, rapide et lisible peut déjà devenir une base extrêmement utile.
+            </p>
+
+            <p>
+              La première force d'un site, c'est qu'il rassemble l'information au même endroit.
+              Sur les réseaux sociaux, les contenus sont dispersés, mélangés, rapidement oubliés et dépendants d'algorithmes.
+              Sur un site, vous organisez votre message comme vous le souhaitez. Vous pouvez créer une page d'accueil,
+              une présentation, des articles, une page de contact et des informations qui rassurent les visiteurs.
+              Cette maîtrise de la structure change beaucoup de choses.
+            </p>
+
+            <h2>Un espace qui vous appartient</h2>
+            <p>
+              Un site personnel ou éditorial vous donne un espace beaucoup plus stable que les plateformes sociales.
+              Même si vous partagez vos pages sur Instagram, Facebook ou ailleurs, le contenu principal reste chez vous.
+              Cela signifie que vous pouvez le modifier, l'améliorer, l'organiser et le faire évoluer selon vos objectifs.
+            </p>
+
+            <p>
+              Cette autonomie est précieuse. Elle vous évite de dépendre totalement des tendances d'une plateforme
+              ou des formats du moment. Un bon article, une bonne page de présentation ou une structure claire
+              peuvent continuer à être utiles longtemps.
+            </p>
+
+            <h2>La clarté inspire la confiance</h2>
+            <p>
+              Quand une personne visite un site propre, rapide et bien présenté, elle ressent une certaine stabilité.
+              Elle comprend où elle se trouve, ce qu'elle peut lire, comment vous contacter et ce que votre projet cherche à faire.
+              Cette sensation de clarté crée une première forme de confiance.
+            </p>
+
+            <p>
+              Beaucoup de projets paraissent peu sérieux non pas parce que l'idée est mauvaise,
+              mais parce que la présentation est confuse. Il manque des pages importantes,
+              le texte est trop pauvre, la navigation est floue ou le site semble abandonné.
+              À l'inverse, une structure simple avec quelques vraies pages bien écrites donne déjà une meilleure impression.
+            </p>
+
+            <h2>Le texte reste central</h2>
+            <p>
+              Un site n'est pas seulement une vitrine visuelle. Le texte y joue un rôle central.
+              C'est lui qui explique, rassure, oriente et donne du sens au projet. C'est aussi lui
+              qui permet souvent aux moteurs de recherche de comprendre ce que contient la page.
+              Même avec un design propre, un site vide ou presque vide reste fragile.
+            </p>
+
+            <p>
+              Voilà pourquoi il est utile d'écrire de vraies introductions, de vrais articles,
+              de vraies pages d'information et de vrais contenus utiles. Le design attire,
+              mais le texte construit la profondeur. Sans profondeur, un site semble rapidement superficiel.
+            </p>
+
+            <h2>Conclusion</h2>
+            <p>
+              Un site web simple peut devenir une vraie base pour un projet durable,
+              à condition d'être lisible, propre et utile. Il n'a pas besoin d'être spectaculaire pour être crédible.
+              Il a surtout besoin d'une structure claire, de pages essentielles et d'un contenu écrit avec sérieux.
+            </p>
+
+            <p>
+              Sur internet, beaucoup de projets avancent non pas parce qu'ils commencent de manière grandiose,
+              mais parce qu'ils commencent de manière cohérente. Un site simple peut être exactement cela :
+              une première base cohérente, capable de grandir avec le temps.
+            </p>
+          </article>
+
+          <aside>
+            <div class="sidebar-box">
+              <h3>Autres articles</h3>
+              <div class="simple-list">
+                <a data-page="article1">Freelancing</a>
+                <a data-page="article2">Compétences utiles</a>
+                <a data-page="article4">Le pouvoir de la discipline</a>
+                <a data-page="article5">Revenu en ligne</a>
+              </div>
+            </div>
+
+            <div class="sidebar-box">
+              <h3>Pages importantes</h3>
+              <ul>
+                <li>Accueil claire</li>
+                <li>À propos détaillé</li>
+                <li>Contact</li>
+                <li>Confidentialité</li>
+                <li>Conditions d'utilisation</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </section>
+
+    <section id="article4" class="page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>La discipline compte souvent plus que la motivation dans les projets digitaux</h1>
+          <p>Une lecture longue pour comprendre pourquoi les résultats viennent rarement d'un enthousiasme passager.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container article-layout">
+          <article class="article-main">
+            <div class="article-header">
+              <span class="tag">Discipline</span>
+              <h1>La discipline compte souvent plus que la motivation dans les projets digitaux</h1>
+              <div class="meta">Publié en 2026 • Lecture longue • Niveau débutant</div>
+            </div>
+
+            <p>
+              La motivation a quelque chose de séduisant. Elle donne une impulsion forte, un élan, une envie d'agir tout de suite.
+              Beaucoup de projets commencent grâce à elle. On regarde une vidéo inspirante, on imagine un futur meilleur,
+              on ouvre un nouvel outil, on note des idées, et pendant quelques heures ou quelques jours,
+              tout paraît possible. Le problème est que cette énergie n'est pas stable.
+            </p>
+
+            <p>
+              Dans le monde digital, les résultats prennent souvent du temps. Il faut apprendre, pratiquer,
+              corriger, publier, recommencer, attendre des retours, ajuster encore. Ce rythme n'est pas toujours spectaculaire.
+              Il est même parfois monotone. C'est précisément pour cela que la discipline devient plus importante que la motivation.
+            </p>
+
+            <h2>La motivation démarre, la discipline continue</h2>
+            <p>
+              Il serait faux de dire que la motivation ne sert à rien. Elle a une utilité réelle.
+              Elle peut déclencher une décision, donner du courage et aider à faire les premiers pas.
+              Mais une fois le départ lancé, elle ne suffit plus. Quand les résultats ne viennent pas vite,
+              quand la fatigue s'accumule ou quand l'on compare ses progrès à ceux des autres,
+              la motivation baisse naturellement.
+            </p>
+
+            <p>
+              C'est là que la discipline intervient. Elle agit comme une structure intérieure.
+              Elle ne dépend pas d'une émotion forte. Elle repose sur l'habitude, le choix répété
+              et la fidélité à une direction même quand l'enthousiasme diminue.
+            </p>
+
+            <h2>Les petits objectifs valent mieux que les grandes promesses</h2>
+            <p>
+              Beaucoup de personnes se fixent des objectifs énormes qu'elles ne peuvent pas tenir longtemps.
+              Elles veulent apprendre trois nouvelles compétences en deux semaines, publier tous les jours,
+              lancer un site complet et trouver des clients presque immédiatement. Ce genre d'ambition intense
+              finit souvent par produire une grande fatigue.
+            </p>
+
+            <p>
+              À l'inverse, les petits objectifs répétables ont un pouvoir étonnant.
+              Écrire trente minutes par jour, améliorer une page par semaine, monter une courte vidéo tous les quinze jours
+              ou lire un article sérieux chaque matin sont des actions modestes, mais durables.
+              Leur force vient de la répétition.
+            </p>
+
+            <h2>La régularité crée une accumulation invisible</h2>
+            <p>
+              Une grande partie du progrès est invisible au jour le jour. Quand on répète un petit effort,
+              on a parfois l'impression que rien ne change. Pourtant, ces répétitions s'accumulent.
+              Une dizaine de textes écrits, plusieurs essais publiés, des erreurs corrigées,
+              des habitudes installées et des réflexes améliorés finissent par transformer le niveau réel d'une personne.
+            </p>
+
+            <p>
+              Cette accumulation discrète est l'une des clés des projets durables.
+              Elle explique pourquoi des gens ordinaires finissent par obtenir des résultats solides,
+              alors que d'autres, pourtant très motivés au départ, disparaissent rapidement.
+            </p>
+
+            <h2>Conclusion</h2>
+            <p>
+              Dans les projets digitaux, la motivation peut être une belle étincelle, mais elle ne remplace pas la structure.
+              Ce qui fait avancer sur la durée, c'est souvent la capacité à répéter de petites actions utiles,
+              même sans enthousiasme spectaculaire.
+            </p>
+
+            <p>
+              La discipline n'a rien de glamour. Elle est discrète, parfois monotone, souvent exigeante.
+              Pourtant, c'est elle qui transforme les intentions en résultats. Et dans un monde où beaucoup commencent
+              mais peu continuent, cette qualité devient l'un des avantages les plus puissants.
+            </p>
+          </article>
+
+          <aside>
+            <div class="sidebar-box">
+              <h3>Autres articles</h3>
+              <div class="simple-list">
+                <a data-page="article1">Freelancing</a>
+                <a data-page="article2">Compétences utiles</a>
+                <a data-page="article3">Créer un site simple</a>
+                <a data-page="article5">Revenu en ligne</a>
+              </div>
+            </div>
+
+            <div class="sidebar-box">
+              <h3>Idées simples</h3>
+              <ul>
+                <li>Écrire 30 minutes par jour</li>
+                <li>Publier un petit projet régulièrement</li>
+                <li>Améliorer une compétence à la fois</li>
+                <li>Mesurer le progrès sur plusieurs semaines</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </section>
+
+    <section id="article5" class="page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Construire un revenu en ligne demande surtout du temps, une stratégie claire et de la patience</h1>
+          <p>Une lecture longue pour remettre les choses à leur vraie place et comprendre comment naissent les projets durables.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container article-layout">
+          <article class="article-main">
+            <div class="article-header">
+              <span class="tag">Revenus en ligne</span>
+              <h1>Construire un revenu en ligne demande surtout du temps, une stratégie claire et de la patience</h1>
+              <div class="meta">Publié en 2026 • Lecture longue • Niveau débutant</div>
+            </div>
+
+            <p>
+              Internet a créé de nouvelles possibilités économiques. Il est aujourd'hui possible de proposer un service,
+              publier du contenu, vendre un produit numérique, travailler à distance ou développer une audience.
+              Cette réalité est encourageante. Mais elle est souvent présentée d'une manière trop rapide,
+              trop brillante et trop simplifiée. Beaucoup de contenus laissent croire qu'il suffit de quelques jours
+              pour générer un revenu stable. Cette image attire, mais elle déforme la réalité.
+            </p>
+
+            <p>
+              Un revenu en ligne existe rarement comme un cadeau soudain. Il se construit plutôt comme une conséquence.
+              Il apparaît quand une personne accumule assez de valeur, de visibilité, de clarté et de confiance
+              pour que d'autres soient prêts à payer ou à suivre son travail. Cette logique demande du temps.
+            </p>
+
+            <h2>Le problème n'est pas le manque d'idées</h2>
+            <p>
+              Les idées ne manquent pas. Freelancing, affiliation, publicité, vente de services, création de contenu,
+              produits digitaux, boutique en ligne, assistance virtuelle ou formation sont autant de pistes possibles.
+              Ce qui manque le plus souvent, c'est la capacité à rester assez longtemps dans une direction
+              pour lui laisser une chance réelle de produire quelque chose.
+            </p>
+
+            <p>
+              Beaucoup de débutants changent de stratégie chaque semaine. Ils essaient un modèle aujourd'hui,
+              le quittent demain, découvrent une autre promesse, s'y jettent, puis recommencent ailleurs.
+              Cette agitation donne le sentiment de chercher activement, mais elle empêche souvent l'apparition
+              d'une vraie base solide.
+            </p>
+
+            <h2>Le revenu vient souvent après la valeur</h2>
+            <p>
+              Une personne commence généralement à gagner quelque chose quand elle devient utile d'une manière visible.
+              Cette utilité peut prendre plusieurs formes : résoudre un problème, faire gagner du temps,
+              créer une bonne présentation, informer clairement, divertir, aider à vendre, améliorer une image de marque
+              ou structurer un contenu.
+            </p>
+
+            <p>
+              Si cette valeur est absente, il devient très difficile de créer un revenu durable.
+              À l'inverse, quand elle devient réelle et visible, des opportunités peuvent apparaître.
+              Ce n'est pas toujours spectaculaire au début, mais c'est beaucoup plus stable.
+            </p>
+
+            <h2>La patience n'est pas passive</h2>
+            <p>
+              Être patient ne signifie pas attendre sans agir. La vraie patience est active.
+              Elle consiste à continuer à construire malgré l'absence de résultats immédiats.
+              Elle accepte que certaines choses prennent du temps : trouver les bons mots,
+              améliorer une compétence, bâtir un site, obtenir ses premières réponses ou créer une petite réputation.
+            </p>
+
+            <p>
+              Cette patience active est difficile, parce qu'elle ne donne pas toujours des récompenses visibles rapidement.
+              Pourtant, elle permet d'éviter l'erreur la plus fréquente : abandonner une direction juste avant
+              qu'elle commence à devenir crédible.
+            </p>
+
+            <h2>La cohérence vaut plus que les pics d'effort</h2>
+            <p>
+              Un grand effort isolé impressionne parfois, mais c'est la cohérence qui produit les bases durables.
+              Publier quelques contenus de qualité, améliorer son profil, rendre son site plus lisible,
+              mieux présenter son service, apprendre une compétence de façon suivie : ces actions paraissent simples,
+              mais elles créent une densité de travail qui finit par compter.
+            </p>
+
+            <p>
+              Sur internet, beaucoup de projets échouent non parce qu'ils étaient mauvais,
+              mais parce qu'ils n'ont pas été portés assez longtemps avec cohérence.
+              Cette vérité est moins excitante que les promesses rapides, mais elle est beaucoup plus utile.
+            </p>
+
+            <h2>Conclusion</h2>
+            <p>
+              Construire un revenu en ligne est possible, mais cela demande plus que de l'envie.
+              Il faut une stratégie claire, une compétence ou un contenu utile, une structure,
+              une présence cohérente et du temps. Le revenu est rarement la première pierre.
+              Il vient plutôt après plusieurs couches de travail.
+            </p>
+
+            <p>
+              Ceux qui avancent finissent souvent par comprendre une chose simple :
+              l'objectif n'est pas de trouver le raccourci parfait, mais de construire une base assez solide
+              pour que les résultats deviennent logiques. Sur la durée, cette approche est souvent la plus saine
+              et la plus durable.
+            </p>
+          </article>
+
+          <aside>
+            <div class="sidebar-box">
+              <h3>Autres articles</h3>
+              <div class="simple-list">
+                <a data-page="article1">Freelancing pour débutants</a>
+                <a data-page="article2">Compétences numériques utiles</a>
+                <a data-page="article3">Pourquoi avoir un site</a>
+                <a data-page="article4">La force de la discipline</a>
+              </div>
+            </div>
+
+            <div class="sidebar-box">
+              <h3>Mots-clés</h3>
+              <ul>
+                <li>Patience</li>
+                <li>Cohérence</li>
+                <li>Compétence utile</li>
+                <li>Présence en ligne</li>
+                <li>Valeur visible</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </section>
+
+    <section id="about" class="page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>À propos de Digital Horizon</h1>
+          <p>Une plateforme éditoriale conçue pour aider les débutants à comprendre le digital et les projets en ligne.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="content-box">
+            <h2>Notre intention</h2>
+            <p>
+              Digital Horizon a été créé pour proposer un contenu simple, lisible et utile
+              à celles et ceux qui veulent commencer quelque chose de sérieux sur internet.
+              Le projet repose sur une idée claire : expliquer sans compliquer, encourager sans mentir
+              et structurer des informations qui peuvent réellement aider un débutant.
+            </p>
+
+            <p>
+              Beaucoup de contenus en ligne promettent des résultats très rapides.
+              Cette promesse attire, mais elle déçoit souvent. Nous avons choisi une approche différente.
+              Nous préférons parler de progression réelle, de compétences utiles, de discipline,
+              de clarté et de construction lente d'une base solide.
+            </p>
+
+            <h2>Le type de contenu proposé</h2>
+            <p>
+              Le site publie des articles informatifs autour du freelancing, des compétences numériques,
+              des sites web, de la discipline et des revenus en ligne. Chaque texte cherche à offrir
+              une lecture structurée, accessible et suffisamment développée pour être vraiment utile.
+            </p>
+
+            <p>
+              L'objectif n'est pas seulement de remplir des pages, mais de construire progressivement
+              un espace éditorial cohérent, capable d'apporter de la valeur au lecteur tout en renforçant
+              la crédibilité du site.
+            </p>
+
+            <h2>Notre vision</h2>
+            <p>
+              Nous pensons qu'un projet durable commence rarement dans le bruit.
+              Il commence souvent dans la simplicité, avec quelques pages propres, quelques bons textes
+              et une volonté sincère de faire les choses sérieusement. Digital Horizon veut suivre cette logique :
+              proposer une base calme, utile et évolutive.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="contact" class="page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Contact</h1>
+          <p>Pour toute question, remarque ou proposition de collaboration, vous pouvez utiliser le formulaire ci-dessous.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container grid grid-2">
+          <div class="form-box">
+            <h2>Envoyer un message</h2>
+            <p>Nous faisons de notre mieux pour répondre dans un délai raisonnable.</p>
+            <form id="contactForm">
+              <input type="text" placeholder="Votre nom" required />
+              <input type="email" placeholder="Votre adresse e-mail" required />
+              <textarea rows="7" placeholder="Votre message" required></textarea>
+              <button type="submit">Envoyer</button>
+            </form>
+          </div>
+
+          <div class="info-box">
+            <h2>Informations</h2>
+            <p>Email de contact : <strong>contact@digitalhorizon-info.com</strong></p>
+            <p>
+              Le site Digital Horizon a pour vocation de publier du contenu informatif
+              autour du digital, du freelancing, des compétences utiles et des projets en ligne.
+            </p>
+            <p>
+              Si vous souhaitez améliorer le site, suggérer un sujet ou proposer une idée,
+              votre message est le bienvenu.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="privacy" class="page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Politique de confidentialité</h1>
+          <p>Cette page explique comment les informations peuvent être utilisées dans le cadre normal du fonctionnement du site.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="content-box">
+            <h2>Respect de la vie privée</h2>
+            <p>
+              Digital Horizon accorde une importance particulière à la protection de la vie privée de ses visiteurs.
+              Les informations éventuellement transmises via le formulaire de contact sont utilisées uniquement
+              pour répondre aux demandes reçues et améliorer la qualité générale de l'échange.
+            </p>
+
+            <h2>Utilisation des données</h2>
+            <p>
+              Les données fournies volontairement par l'utilisateur, comme le nom ou l'adresse e-mail,
+              ne sont pas revendues à des tiers dans le cadre normal du fonctionnement du site.
+              Elles servent à la communication, au suivi des messages et à une éventuelle amélioration du service.
+            </p>
+
+            <h2>Cookies et mesure d'audience</h2>
+            <p>
+              Le site peut utiliser des cookies techniques ou analytiques pour mieux comprendre la navigation,
+              mesurer certaines statistiques générales et améliorer l'expérience utilisateur.
+              Ces outils ont pour objectif de rendre le site plus clair, plus rapide et plus utile.
+            </p>
+
+            <h2>Mise à jour de cette politique</h2>
+            <p>
+              Cette politique peut être modifiée à tout moment afin de refléter l'évolution du site,
+              de ses fonctionnalités ou des obligations applicables.
+              En continuant à utiliser le site, l'utilisateur accepte cette politique dans sa version en vigueur.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="terms" class="page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>Conditions d'utilisation</h1>
+          <p>Cette page présente les conditions générales de consultation et d'utilisation du site.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="content-box">
+            <h2>Nature du contenu</h2>
+            <p>
+              Les contenus publiés sur Digital Horizon sont fournis à titre informatif.
+              Ils ont pour vocation d'aider les lecteurs à mieux comprendre certains sujets liés au digital,
+              au freelancing, aux compétences numériques et aux projets en ligne.
+            </p>
+
+            <h2>Responsabilité de l'utilisateur</h2>
+            <p>
+              L'utilisateur reste responsable de l'usage qu'il fait des informations publiées sur le site.
+              Malgré l'attention portée à la qualité des textes, certaines informations peuvent évoluer avec le temps
+              ou nécessiter une adaptation selon les situations individuelles.
+            </p>
+
+            <h2>Propriété du contenu</h2>
+            <p>
+              Les textes, la structure du site et certains éléments visuels peuvent être protégés.
+              Toute reproduction ou réutilisation non autorisée peut être interdite sans accord préalable.
+            </p>
+
+            <h2>Évolution du site</h2>
+            <p>
+              Digital Horizon se réserve le droit de modifier, corriger, compléter ou supprimer certaines parties du site
+              afin d'améliorer la qualité générale du contenu et de l'expérience utilisateur.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <h3>Digital Horizon</h3>
+      <p>Conseils pratiques, lecture utile et progression réaliste dans le digital.</p>
+      <p>© 2026 Digital Horizon. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const pages = document.querySelectorAll(".page");
+    const links = document.querySelectorAll("[data-page]");
+
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+      });
+    }
+
+    function showPage(pageId) {
+      pages.forEach(page => page.classList.remove("active"));
+      const target = document.getElementById(pageId);
+      if (target) {
+        target.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
+      document.querySelectorAll('.nav-links a[data-page="' + pageId + '"]').forEach(a => a.classList.add("active"));
+
+      navLinks.classList.remove("open");
+    }
+
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        const pageId = link.getAttribute("data-page");
+        if (pageId === "home-articles") {
+          showPage("home");
+          setTimeout(() => {
+            document.getElementById("home-articles").scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        } else {
+          showPage(pageId);
+        }
+      });
+    });
+
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Votre message a été envoyé avec succès.");
+        contactForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>
